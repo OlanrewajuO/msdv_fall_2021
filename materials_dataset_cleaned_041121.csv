@@ -1,0 +1,49 @@
+name,parent,nations,value
+Source,,,
+Sculpture,Source,Algeria,1
+Looms & Sewing,Source,Burkina-Faso,1
+Clippings,Source,Cameroon,1
+Looms & Sewing,Source,Cameroon,3
+Sculpture,Source,Congo,3
+Looms & Sewing,Source,Ivory-Coast,2
+Sculpture,Source,Ivory-Coast,26
+Books & Catalogs,Source,DRC,1
+Ceramics,Source,DRC,2
+Jewelry,Source,DRC,4
+Masks,Source,DRC,1
+Sculpture,Source,DRC,5
+Books & Catalogs,Source,Egypt,1
+Books & Catalogs,Source,Ethiopia,1
+Paintings,Source,Ethiopia,13
+Sculpture,Source,Ethiopia,9
+Textile & Fiber,Source,Ethiopia,2
+Archival materials,Source,Gabon,1
+Looms & Sewing,Source,Ghana,1
+Sculpture,Source,Ghana,6
+Textile & Fiber,Source,Ghana,1
+Figures,Source,Guinea,4
+Cloth,Source,Guinea-Bissau,3
+Books & Catalogs,Source,Kenya,1
+Ceramics,Source,Mali,1
+Decorative arts,Source,Mali,3
+Figures,Source,Mali,3
+Jewelry,Source,Mali,1
+Looms & Sewing,Source,Mali,2
+Sculpture,Source,Mali,1
+Textile & Fiber,Source,Morocco,1
+Looms & Sewing,Source,Niger,4
+Figures,Source,Nigeria,6
+Jewelry,Source,Nigeria,6
+Looms & Sewing,Source,Nigeria,2
+Masks,Source,Nigeria,1
+Sculpture,Source,Nigeria,21
+Cloth,Source,Senegal,7
+Looms & Sewing,Source,Senegal,2
+Cloth,Source,Sierra-Leone,1
+Looms & Sewing,Source,Sierra-Leone,1
+Sculpture,Source,Sierra-Leone,2
+Books & Catalogs,Source,South-Africa,2
+Others,Source,South-Africa,1
+Sculpture,Source,South-Africa,3
+Textile & Fiber,Source,Sudan,1
+Sculpture,Source,Uganda,5

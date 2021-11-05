@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<meta charset="utf-8" />
+
+<!-- Load d3.js -->
+<script src="https://d3js.org/d3.v4.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lodash@4.17.10/lodash.min.js"></script>
+
+<!-- Create a div where the graph will take place -->
+<div id="container"></div>
+
+<script>
+  // set the dimensions and margins of the graph
+  var margin = { top: 10, right: 10, bottom: 10, left: 10 },
+    width = 445 - margin.left - margin.right,
+    height = 445 - margin.top - margin.bottom;
+
+  const container = document.querySelector("#container");
+
+  d3.csv("materials_dataset_cleaned_041121.csv", (data) => {
+    const [colHeaders] = data;
+    const groups = _.groupBy(data, "nations");
+
+    const getRootNodes = (key) => {
+      const { [key]: countryData } = groups;
+      const dataSet = [colHeaders, ...countryData];
+      const root = d3
+        .stratify()
+        .id((d) => d.name)
+        .parentId((d) => d.parent)(dataSet);
+
+      root.sum((d) => +d.value);
+      d3.treemap().size([width, height]).padding(4)(root);
+      return root;
+    };
+
+    const plotNode = (key) => {
+      const root = getRootNodes(key);
+      const parent = document.createElement("div");
+      const el = document.createElement("div");
+      el.id = key;
+      const label = document.createElement("div");
+      label.append(key);
+
+      parent.append(label);
+      parent.append(el);
+      container.append(parent);
+
+      // append the svg object to the body of the page
+      const svg = d3
+        .select(`#${key}`)
+        .append("svg")
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom)
+        .append("g")
+        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+      svg
+        .selectAll("rect")
+        .data(root.leaves())
+        .enter()
+        .append("rect")
+        .attr("x", function (d) {
+          return d.x0;
+        })
+        .attr("y", function (d) {
+          return d.y0;
+        })
+        .attr("width", function (d) {
+          return d.x1 - d.x0;
+        })
+        .attr("height", function (d) {
+          return d.y1 - d.y0;
+        })
+        .style("stroke", "black")
+        .style("fill", "#69b3a2");
+
+      svg
+        .selectAll("text")
+        .data(root.leaves())
+        .enter()
+        .append("text")
+        .attr("x", function (d) {
+          return d.x0 + 10;
+        }) // +10 to adjust position (more right)
+        .attr("y", function (d) {
+          return d.y0 + 20;
+        }) // +20 to adjust position (lower)
+        .text(function (d) {
+          return d.data.name;
+        })
+        .attr("font-size", "15px")
+        .attr("fill", "white");
+    };
+
+    _.each(groups, (v, k) => {
+      !_.isEmpty(k) && plotNode(k);
+    });
+  });
+</script>
